@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=4 uid="uid://7u568nebn6mm"]
+
+[ext_resource type="Script" path="res://Mapa.gd" id="1_vvfrj"]
+[ext_resource type="Texture2D" uid="uid://0edxj10bjkwb" path="res://dlazdice.png" id="2_8igh8"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_llbcr"]
+tile_data = PackedInt32Array(196608, 131074, 0, 65537, 65538, 805306368, 131073, 2, 0, 196609, 2, 0, 262145, 2, 0, 327681, 65538, 1342177280, 65538, 2, 0, 131074, 2, 0, 196610, 2, 0, 262146, 2, 0, 327682, 2, 0, 3, 131074, 0, 65539, 2, 0, 131075, 2, 0, 196611, 2, 0, 262147, 2, 0, 327683, 2, 0, 393219, 131074, 0, 65540, 2, 0, 131076, 2, 0, 196612, 2, 0, 262148, 2, 0, 327684, 2, 0, 65541, 65538, 1610612736, 131077, 2, 0, 196613, 2, 0, 262149, 2, 0, 327685, 65538, 0, 196614, 131074, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yvcqf"]
+texture = ExtResource("2_8igh8")
+texture_region_size = Vector2i(25, 25)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sns41"]
+tile_size = Vector2i(25, 25)
+sources/2 = SubResource("TileSetAtlasSource_yvcqf")
+tile_proxies/coords_level = [[0, Vector2i(0, 0)], [2, Vector2i(0, 0)], [0, Vector2i(1, 0)], [2, Vector2i(1, 0)], [1, Vector2i(0, 0)], [2, Vector2i(2, 0)], [9, Vector2i(0, 0)], [11, Vector2i(0, 0)], [10, Vector2i(0, 0)], [11, Vector2i(1, 0)]]
+pattern_0 = SubResource("TileMapPattern_llbcr")
+
+[node name="Hra" type="Node"]
+
+[node name="Mapa" type="Node2D" parent="."]
+script = ExtResource("1_vvfrj")
+
+[node name="Prostory" type="TileMapLayer" parent="Mapa"]
+tile_map_data = PackedByteArray("AAAAAAMAAgACAAAAAAABAAEAAgABAAAAADABAAIAAgAAAAAAAAABAAMAAgAAAAAAAAABAAQAAgAAAAAAAAABAAUAAgABAAAAAFACAAEAAgAAAAAAAAACAAIAAgAAAAAAAAACAAMAAgAAAAAAAAACAAQAAgAAAAAAAAACAAUAAgAAAAAAAAADAAAAAgACAAAAAAADAAEAAgAAAAAAAAADAAIAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAUAAgAAAAAAAAADAAYAAgACAAAAAAAEAAEAAgAAAAAAAAAEAAIAAgAAAAAAAAAEAAMAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAUAAgAAAAAAAAAFAAEAAgABAAAAAGAFAAIAAgAAAAAAAAAFAAMAAgAAAAAAAAAFAAQAAgAAAAAAAAAFAAUAAgABAAAAAAAGAAMAAgACAAAAAAA=")
+tile_set = SubResource("TileSet_sns41")
