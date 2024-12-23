@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="42.333332mm"
+   height="8.4666815mm"
+   viewBox="0 0 42.333334 8.4666815"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   sodipodi:docname="vzornik.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.1417557"
+     inkscape:cx="38.986706"
+     inkscape:cy="86.377732"
+     inkscape:window-width="1920"
+     inkscape:window-height="1052"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Vrstva 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-37.837452,-115.56235)">
+    <path
+       id="rect1-9"
+       style="fill:#e3e2db;stroke-width:0.064"
+       d="m 46.304119,115.56235 v 8.46667 h -8.466667 z"
+       sodipodi:nodetypes="cccc" />
+    <rect
+       style="fill:#e3e2db;stroke-width:0.064"
+       id="rect1-0-3"
+       width="8.4666662"
+       height="8.4666662"
+       x="46.304119"
+       y="115.56236" />
+    <rect
+       style="fill:#ffeeaa;stroke-width:0.064"
+       id="rect10-1-7-8"
+       width="8.4666662"
+       height="8.4666662"
+       x="54.770786"
+       y="115.56235" />
+    <rect
+       style="fill:#333333;stroke-width:0.064"
+       id="rect10-1-7-8-5"
+       width="8.4666662"
+       height="8.4666662"
+       x="71.704117"
+       y="115.56235" />
+    <rect
+       style="fill:#80b3ff;stroke-width:0.064"
+       id="rect3-2"
+       width="8.4666662"
+       height="8.4666662"
+       x="63.237453"
+       y="115.56235" />
+    <path
+       id="path1"
+       style="fill:#333333;stroke-width:0.064"
+       d="m 37.837452,124.02902 v -8.46667 h 8.466667 z"
+       sodipodi:nodetypes="cccc" />
+  </g>
+</svg>
