@@ -5,7 +5,8 @@ extends Node2D
 
 func _ready() -> void:
 	vytvorit_mapu()
-
+	#await get_tree().process_frame
+	#print(ziskat_seznam_globalne(ziskat_vychody()))
 
 func vytvorit_mapu(rozmer_mapy:=Vector2i(5,5)) -> void:
 	for x in range(rozmer_mapy.x):
@@ -67,21 +68,16 @@ func zablokovat_nahodne_dvere(pocet:int) -> void:
 		
 		Prostory.set_cell(pozice_nahodnych_dveri, 1, Vector2i(4,0))
 
-#func pridat_vychody() -> void:
-	#var mozne_pozice: Array
-	#for x in range(5):
-		#mozne_pozice.append(Vector2i(x *rozmer_vzoru.x +3, 0))
-	#Prostory.set_cells_terrain_connect(mozne_pozice, 0, 2)
 
-#func nahodne_dvere(pozice:Vector2i) -> void:
-	#var mozne_pozice: Array = [Vector2i(5,2), Vector2i(2,5)]
-	#var pocet_zablokovanych_dveri := randi_range(0, mozne_pozice.size()) 
-	#
-	#for _i in range(pocet_zablokovanych_dveri):
-		#mozne_pozice.pop_back()
-	#for lokalni_pozice in mozne_pozice:
-		#pridat_dvere(pozice, lokalni_pozice)
-#
-#func pridat_dvere(pozice:Vector2i) -> void:
-	#var mozne_pozice: Array = [pozice *rozmer_vzoru + Vector2i(7,4), pozice *rozmer_vzoru + Vector2i(4,7)]
-	#Prostory.set_cells_terrain_connect(mozne_pozice, 0, 1)
+func ziskat_vychody() -> Array:
+	var policko_vychodu := Vector2i(3,0)
+	return Prostory.get_used_cells_by_id(1, policko_vychodu)
+
+
+func ziskat_globalne(pozice:Vector2i) -> Vector2i:
+	return Prostory.map_to_local(pozice)
+
+
+func ziskat_seznam_globalne(souradnice:PackedVector2Array) -> PackedVector2Array:
+	var seznam := Array(souradnice)
+	return seznam.map(ziskat_globalne)

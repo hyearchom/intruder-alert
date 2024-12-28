@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://7u568nebn6mm"]
+[gd_scene load_steps=15 format=3 uid="uid://7u568nebn6mm"]
 
 [ext_resource type="Script" path="res://Mapa.gd" id="1_vvfrj"]
 [ext_resource type="Texture2D" uid="uid://h7pp2mrxpd0l" path="res://vzornik.svg" id="2_30wqy"]
+[ext_resource type="Script" path="res://Postavy.gd" id="3_3iflw"]
 [ext_resource type="Script" path="res://Hrac.gd" id="3_l0pdp"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_eailf"]
@@ -37,6 +38,12 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 agent_radius = 0.0
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3yaej"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_66erx"]
 texture = ExtResource("2_30wqy")
 texture_region_size = Vector2i(32, 32)
@@ -53,6 +60,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/1/flip_h = true
 0:0/1/terrain_set = 0
 0:0/1/terrain = 0
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 0:0/1/navigation_layer_0/polygon = SubResource("NavigationPolygon_upgr1")
 0:0/2 = 2
 0:0/2/flip_v = true
@@ -74,6 +82,7 @@ texture_region_size = Vector2i(32, 32)
 2:0/0 = 0
 2:0/0/terrain_set = 0
 2:0/0/terrain = 1
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_3yaej")
 4:0/0 = 0
 4:0/0/terrain_set = 0
 4:0/0/terrain = 3
@@ -108,9 +117,13 @@ metadata/_edit_group_ = true
 [node name="Prostory" type="TileMapLayer" parent="Mapa"]
 tile_set = SubResource("TileSet_sns41")
 
-[node name="Postavy" type="Node2D" parent="."]
+[node name="Postavy" type="Node2D" parent="." node_paths=PackedStringArray("Mapa")]
+z_index = 1
+z_as_relative = false
+script = ExtResource("3_3iflw")
+Mapa = NodePath("../Mapa")
 
-[node name="Hrac" type="CharacterBody2D" parent="Postavy"]
+[node name="Hrac" type="CharacterBody2D" parent="Postavy" groups=["hrac"]]
 position = Vector2(120, 120)
 motion_mode = 1
 script = ExtResource("3_l0pdp")
