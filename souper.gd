@@ -6,9 +6,10 @@ const RYCHLOST_CHUZE: float = 50.0
 var cil_trasy: Vector2i
 var bod_trasy: int
 var trasa: Array
-
 @onready var navigacni_pole := get_world_2d().get_navigation_map()
 @onready var oznaceni :=  ziskat_oznaceni()
+
+@onready var Hrac:= get_tree().get_first_node_in_group("hrac")
 
 func ziskat_cestu(cil:Vector2i) -> PackedVector2Array:
 	var cesta := NavigationServer2D.map_get_path(
@@ -33,6 +34,12 @@ func vypocitat_trasu(cil:Vector2i) -> void:
 	vykreslit_cestu()
 
 
+func urcit_cil() -> Vector2i:
+	var cil := get_tree().get_first_node_in_group("sejf")
+	if not cil:
+		cil = Hrac
+	return cil.global_position
+
 func vykreslit_cestu() -> void:
 	var cesty := get_tree().get_nodes_in_group('cesty')
 	cesty[oznaceni].points = trasa
@@ -42,19 +49,19 @@ func dalsi_bod_cesty() -> void:
 	bod_trasy += 1
 	if bod_trasy > trasa.size() -1:
 		bod_trasy = 0
-		vypocitat_trasu(get_tree().get_first_node_in_group("hrac").position)
+		vypocitat_trasu(urcit_cil())
 	cil_trasy = trasa[bod_trasy]
-	
 
 func priblizeni_k_cily(cil:Vector2i) -> bool:
 	var tolerance_priblizeni := 7
+	#print(global_position.distance_to(cil))
 	return global_position.distance_to(cil) < tolerance_priblizeni
 	
 
 func _ready() -> void:
 	set_physics_process(false)
 	await get_tree().process_frame
-	vypocitat_trasu(get_tree().get_first_node_in_group("hrac").position)
+	vypocitat_trasu(urcit_cil())
 	dalsi_bod_cesty()
 	set_physics_process(true)
 

@@ -4,11 +4,10 @@ extends Node2D
 
 
 func _ready() -> void:
-	vytvorit_mapu()
-	#await get_tree().process_frame
-	#print(ziskat_seznam_globalne(ziskat_vychody()))
+	_vytvorit_mapu()
 
-func vytvorit_mapu(rozmer_mapy:=Vector2i(5,5)) -> void:
+
+func _vytvorit_mapu(rozmer_mapy:=Vector2i(5,5)) -> void:
 	for x in range(rozmer_mapy.x):
 		for y in range(rozmer_mapy.y):
 			pridat_mistnost(Vector2i(x,y))
@@ -81,3 +80,7 @@ func ziskat_globalne(pozice:Vector2i) -> Vector2i:
 func ziskat_seznam_globalne(souradnice:PackedVector2Array) -> PackedVector2Array:
 	var seznam := Array(souradnice)
 	return seznam.map(ziskat_globalne)
+
+
+func ziskat_stred() -> Vector2i:
+	return Prostory.get_used_rect().get_center()
