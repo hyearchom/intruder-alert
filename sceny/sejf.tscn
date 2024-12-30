@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dibltixll7eq1"]
+
+[ext_resource type="Script" path="res://sceny/predmet.gd" id="1_cjoo1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcusf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puspb"]
+size = Vector2(60, 60)
+
+[node name="Sejf" type="RigidBody2D" groups=["sejf"]]
+position = Vector2(500, 500)
+gravity_scale = 0.0
+script = ExtResource("1_cjoo1")
+nazev = &"sejf"
+
+[node name="Tvar" type="Polygon2D" parent="."]
+color = Color(0, 0.633333, 1, 1)
+polygon = PackedVector2Array(-15, -15, -15, 15, 15, 15, 15, -15)
+
+[node name="Obrys" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fcusf")
+
+[node name="Citlivost" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="Dosah" type="CollisionShape2D" parent="Citlivost"]
+shape = SubResource("RectangleShape2D_puspb")
+
+[connection signal="body_entered" from="Citlivost" to="." method="_prichod_hrace"]
+[connection signal="body_exited" from="Citlivost" to="." method="_odchod_hrace"]

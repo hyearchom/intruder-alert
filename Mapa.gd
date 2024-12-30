@@ -26,7 +26,7 @@ func pridat_mistnost(pozice:Vector2i) -> void:
 func ziskat_dvere_ven() -> Array:
 	var limity_mapy: Array[int]
 	var plocha_mapy := Prostory.get_used_rect()
-	for souradnice in [
+	for souradnice:int in [
 		plocha_mapy.end.x -1,
 		plocha_mapy.end.y -1,
 		plocha_mapy.position.x,
@@ -35,9 +35,9 @@ func ziskat_dvere_ven() -> Array:
 			if souradnice not in limity_mapy:
 				limity_mapy.append(souradnice)
 	
-	var dvere = ziskat_dvere()
-	var vychody = dvere.filter(
-		func(pozice:Vector2i): return (pozice.x in limity_mapy or pozice.y in limity_mapy))
+	var dvere: Array = ziskat_dvere()
+	var vychody: Array = dvere.filter(
+		func(pozice:Vector2i)->bool: return (pozice.x in limity_mapy or pozice.y in limity_mapy))
 	return vychody
 
 

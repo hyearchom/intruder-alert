@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=3 uid="uid://7u568nebn6mm"]
 
 [ext_resource type="Script" path="res://Mapa.gd" id="1_vvfrj"]
-[ext_resource type="Texture2D" uid="uid://h7pp2mrxpd0l" path="res://vzornik.svg" id="2_30wqy"]
+[ext_resource type="Texture2D" uid="uid://h7pp2mrxpd0l" path="res://media/vzornik.svg" id="2_30wqy"]
 [ext_resource type="Script" path="res://Postavy.gd" id="3_3iflw"]
 [ext_resource type="Script" path="res://Hrac.gd" id="3_l0pdp"]
-[ext_resource type="Script" path="res://Hrozba.gd" id="5_51h2p"]
+[ext_resource type="Script" path="res://display/Hrozba.gd" id="5_51h2p"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_eailf"]
 tile_data = PackedInt32Array(0, 262145, 0, 65536, 262145, 0, 131072, 262145, 0, 196608, 131073, 0, 262144, 262145, 0, 327680, 262145, 0, 393216, 262145, 0, 1, 262145, 0, 65537, 1, 0, 131073, 65537, 0, 196609, 65537, 0, 262145, 65537, 0, 327681, 1, 131072, 393217, 262145, 0, 2, 262145, 0, 65538, 65537, 0, 131074, 65537, 0, 196610, 65537, 0, 262146, 65537, 0, 327682, 65537, 0, 393218, 262145, 0, 3, 131073, 0, 65539, 65537, 0, 131075, 65537, 0, 196611, 65537, 0, 262147, 65537, 0, 327683, 65537, 0, 393219, 131073, 0, 4, 262145, 0, 65540, 65537, 0, 131076, 65537, 0, 196612, 65537, 0, 262148, 65537, 0, 327684, 65537, 0, 393220, 262145, 0, 5, 262145, 0, 65541, 1, 65536, 131077, 65537, 0, 196613, 65537, 0, 262149, 65537, 0, 327685, 1, 196608, 393221, 262145, 0, 6, 262145, 0, 65542, 262145, 0, 131078, 262145, 0, 196614, 131073, 0, 262150, 262145, 0, 327686, 262145, 0, 393222, 262145, 0)
@@ -62,7 +62,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/1/flip_h = true
 0:0/1/terrain_set = 0
 0:0/1/terrain = 0
-0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16)
 0:0/1/navigation_layer_0/polygon = SubResource("NavigationPolygon_upgr1")
 0:0/2 = 2
 0:0/2/flip_v = true
@@ -165,5 +165,5 @@ script = ExtResource("5_51h2p")
 
 [node name="Pocet" type="Label" parent="Display/Okraje/Hrozba"]
 layout_mode = 2
-text = "Test"
+text = "Hrozba"
 horizontal_alignment = 2

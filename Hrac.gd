@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 signal predmet_zvednut
 signal predmet_polozen
-signal noc_zacala
 
 const RYCHLOST_CHUZE: float = 100.0
 const VELIKOST_OTACENI: float = 4
@@ -22,7 +21,7 @@ func ovladani_pohybu() -> void:
 		rotation_degrees += smer_otaceni *VELIKOST_OTACENI
 	var pohled := Vector2.RIGHT.rotated(rotation)
 	
-	var smer_pohybu = pohled *Input.get_axis("dozadu", "dopredu")
+	var smer_pohybu: Vector2 = pohled *Input.get_axis("dozadu", "dopredu")
 	if smer_pohybu:
 		velocity = smer_pohybu *RYCHLOST_CHUZE
 	else:
@@ -35,14 +34,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_released("polozit"):
 		predmet_polozen.emit(odebrat_predmet(), Celo.global_position)
 	if event.is_action_released("noc"):
-		noc_zacala.emit()
+		Signaly.noc_zacala.emit()
 
 func odebrat_predmet() -> String:
 	if not inventar:
 		push_warning('Inventář je prázdný')
 		return ''
 
-	var predmet = inventar[0]
+	var predmet: Dictionary = inventar[0]
 	predmet['mnozstvi'] -= 1
 	if predmet['mnozstvi'] == 0:
 		inventar.erase(predmet)
