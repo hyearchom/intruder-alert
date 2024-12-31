@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcaxexurx5f2g"]
+[gd_scene load_steps=6 format=3 uid="uid://dcaxexurx5f2g"]
 
 [ext_resource type="Script" path="res://sceny/souper.gd" id="1_d6mxi"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xaqsr"]
+light_mode = 2
 
 [sub_resource type="Gradient" id="Gradient_hil7n"]
 offsets = PackedFloat32Array(0.5, 0.6)
@@ -23,6 +26,7 @@ script = ExtResource("1_d6mxi")
 metadata/_edit_group_ = true
 
 [node name="Tvar" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_xaqsr")
 texture = SubResource("GradientTexture2D_dtqji")
 
 [node name="Obrysy" type="CollisionShape2D" parent="."]

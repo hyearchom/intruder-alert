@@ -8,4 +8,4 @@ func _pruchod_soupere(body: Node2D) -> void:
 		prvni_vyuziti = false
 	else:
 		Signaly.prohra.emit()
-		#print(false)
+		#prinwt(false)

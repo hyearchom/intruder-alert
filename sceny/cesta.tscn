@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bc7mo4bhs2l4w"]
 
 [node name="Cesta" type="Line2D" groups=["cesty"]]
+visible = false
 width = 4.0
 default_color = Color(1, 0.435294, 0.211765, 1)

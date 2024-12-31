@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://7u568nebn6mm"]
+[gd_scene load_steps=25 format=3 uid="uid://7u568nebn6mm"]
 
 [ext_resource type="Script" path="res://Mapa.gd" id="1_vvfrj"]
 [ext_resource type="Texture2D" uid="uid://h7pp2mrxpd0l" path="res://media/vzornik.svg" id="2_30wqy"]
 [ext_resource type="Script" path="res://Postavy.gd" id="3_3iflw"]
 [ext_resource type="Script" path="res://Hrac.gd" id="3_l0pdp"]
 [ext_resource type="Script" path="res://display/Hrozba.gd" id="5_51h2p"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ajq2l"]
+light_mode = 2
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_eailf"]
 tile_data = PackedInt32Array(0, 262145, 0, 65536, 262145, 0, 131072, 262145, 0, 196608, 131073, 0, 262144, 262145, 0, 327680, 262145, 0, 393216, 262145, 0, 1, 262145, 0, 65537, 1, 0, 131073, 65537, 0, 196609, 65537, 0, 262145, 65537, 0, 327681, 1, 131072, 393217, 262145, 0, 2, 262145, 0, 65538, 65537, 0, 131074, 65537, 0, 196610, 65537, 0, 262146, 65537, 0, 327682, 65537, 0, 393218, 262145, 0, 3, 131073, 0, 65539, 65537, 0, 131075, 65537, 0, 196611, 65537, 0, 262147, 65537, 0, 327683, 65537, 0, 393219, 131073, 0, 4, 262145, 0, 65540, 65537, 0, 131076, 65537, 0, 196612, 65537, 0, 262148, 65537, 0, 327684, 65537, 0, 393220, 262145, 0, 5, 262145, 0, 65541, 1, 65536, 131077, 65537, 0, 196613, 65537, 0, 262149, 65537, 0, 327685, 1, 196608, 393221, 262145, 0, 6, 262145, 0, 65542, 262145, 0, 131078, 262145, 0, 196614, 131073, 0, 262150, 262145, 0, 327686, 262145, 0, 393222, 262145, 0)
@@ -15,11 +18,17 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 agent_radius = 0.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_21blv"]
+polygon = PackedVector2Array(-16, -16, 16, -16, -16, 16)
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_upgr1"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, -16, 16, 16, 16)])
 agent_radius = 0.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lbnl0"]
+polygon = PackedVector2Array(-16, -16, 16, 16, 16, -16)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o8xdh"]
 vertices = PackedVector2Array(16, 16, -16, -16, 16, -16)
@@ -27,11 +36,17 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, 16, 16, -16)])
 agent_radius = 0.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0nnxg"]
+polygon = PackedVector2Array(-16, -16, 16, 16, -16, 16)
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mul77"]
 vertices = PackedVector2Array(-16, 16, -16, -16, 16, -16)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, -16, 16, 16, -16)])
 agent_radius = 0.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_443ja"]
+polygon = PackedVector2Array(16, 16, 16, -16, -16, 16)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_t5soe"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -45,6 +60,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 agent_radius = 0.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2gcgg"]
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_66erx"]
 resource_name = "Vzornik"
 texture = ExtResource("2_30wqy")
@@ -56,18 +74,21 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_21blv")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, -16, 16)
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_rnvq5")
 0:0/1 = 1
 0:0/1/flip_h = true
 0:0/1/terrain_set = 0
 0:0/1/terrain = 0
+0:0/1/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_lbnl0")
 0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16)
 0:0/1/navigation_layer_0/polygon = SubResource("NavigationPolygon_upgr1")
 0:0/2 = 2
 0:0/2/flip_v = true
 0:0/2/terrain_set = 0
 0:0/2/terrain = 0
+0:0/2/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_0nnxg")
 0:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(16, 16, -16, -16, -16, 16)
 0:0/2/navigation_layer_0/polygon = SubResource("NavigationPolygon_o8xdh")
 0:0/3 = 3
@@ -75,6 +96,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/3/flip_v = true
 0:0/3/terrain_set = 0
 0:0/3/terrain = 0
+0:0/3/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_443ja")
 0:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(16, 16, -16, 16, 16, -16)
 0:0/3/navigation_layer_0/polygon = SubResource("NavigationPolygon_mul77")
 1:0/0 = 0
@@ -88,10 +110,12 @@ texture_region_size = Vector2i(32, 32)
 4:0/0 = 0
 4:0/0/terrain_set = 0
 4:0/0/terrain = 3
+4:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_2gcgg")
 4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSet" id="TileSet_sns41"]
 tile_size = Vector2i(32, 32)
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Mistnost"
@@ -107,21 +131,38 @@ sources/1 = SubResource("TileSetAtlasSource_66erx")
 tile_proxies/coords_level = [[0, Vector2i(0, 0)], [2, Vector2i(0, 0)], [0, Vector2i(1, 0)], [2, Vector2i(1, 0)], [1, Vector2i(0, 0)], [2, Vector2i(2, 0)], [9, Vector2i(0, 0)], [11, Vector2i(0, 0)], [10, Vector2i(0, 0)], [11, Vector2i(1, 0)]]
 pattern_0 = SubResource("TileMapPattern_eailf")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bmoeh"]
+light_mode = 2
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_gxw5k"]
 radius = 9.46
+
+[sub_resource type="Gradient" id="Gradient_k5wta"]
+offsets = PackedFloat32Array(0.702703, 0.722973)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j1tpt"]
+gradient = SubResource("Gradient_k5wta")
+width = 200
+height = 200
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Hra" type="Node"]
 
 [node name="Mapa" type="Node2D" parent="."]
+clip_children = 1
 script = ExtResource("1_vvfrj")
 metadata/_edit_group_ = true
 
 [node name="Prostory" type="TileMapLayer" parent="Mapa"]
+material = SubResource("CanvasItemMaterial_ajq2l")
 tile_set = SubResource("TileSet_sns41")
 
 [node name="Objekty" type="Node2D" parent="." node_paths=PackedStringArray("Mapa")]
 z_index = 1
 z_as_relative = false
+material = SubResource("CanvasItemMaterial_bmoeh")
 script = ExtResource("3_3iflw")
 Mapa = NodePath("../Mapa")
 
@@ -145,6 +186,12 @@ shape = SubResource("CircleShape2D_gxw5k")
 
 [node name="Celo" type="Marker2D" parent="Objekty/Hrac"]
 position = Vector2(10, 0)
+
+[node name="Svetlo" type="PointLight2D" parent="Objekty/Hrac"]
+color = Color(1, 1, 1, 0)
+shadow_enabled = true
+shadow_filter_smooth = 3.0
+texture = SubResource("GradientTexture2D_j1tpt")
 
 [node name="Display" type="CanvasLayer" parent="."]
 
