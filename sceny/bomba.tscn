@@ -5,10 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bnsdtdklrnw0w" path="res://sceny/komponenty/zneskodneni.tscn" id="3_xjqjh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5087u"]
-radius = 60.0
+radius = 100.0
 
 [node name="Bomba" type="Area2D"]
-position = Vector2(500, 500)
 collision_layer = 0
 collision_mask = 48
 script = ExtResource("1_628kp")
@@ -23,6 +22,7 @@ shape = SubResource("CircleShape2D_5087u")
 
 [node name="Efekt" type="Polygon2D" parent="Dosah"]
 visible = false
+scale = Vector2(1.67, 1.67)
 color = Color(1, 0, 0.183333, 0.552941)
 polygon = PackedVector2Array(-58, 6, -39, 21, -42, 42, -20, 42, 1, 61, 17, 39, 48, 34, 35, 11, 60, 2, 46, -16, 47, -36, 16, -41, -1, -59, -19, -44, -47, -37, -42, -14)
 

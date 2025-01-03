@@ -23,7 +23,7 @@ func _protivnik_mimo_dosah(body: Node2D) -> void:
 
 func vybuch() -> void:
 	for obet: Node2D in dosah:
-		obet.queue_free()
+		obet.umrti()
 	Efekt.show()
 	await get_tree().create_timer(0.3).timeout
 	queue_free()

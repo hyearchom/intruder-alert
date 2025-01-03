@@ -24,4 +24,4 @@ func _ready() -> void:
 func nakup(tlacitko: Button) -> void:
 	if Hrozba.uroven >= tlacitko.cena:
 		Hrac.pridat_predmet(tlacitko.id, tlacitko.text.to_lower())
-		Hrozba.zvysit_uroven(-tlacitko.cena)
+		Hrozba.zmenit_uroven(-tlacitko.cena)

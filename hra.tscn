@@ -2,15 +2,13 @@
 
 [ext_resource type="Script" path="res://Mapa.gd" id="1_vvfrj"]
 [ext_resource type="Texture2D" uid="uid://h7pp2mrxpd0l" path="res://media/vzornik.svg" id="2_30wqy"]
+[ext_resource type="Material" uid="uid://cyibocm625xcw" path="res://sceny/komponenty/pouze_na_svetle.tres" id="2_nqx6g"]
 [ext_resource type="Script" path="res://Postavy.gd" id="3_3iflw"]
 [ext_resource type="Script" path="res://Hrac.gd" id="3_l0pdp"]
 [ext_resource type="Script" path="res://display/Oznameni.gd" id="5_4r7d4"]
 [ext_resource type="Script" path="res://display/Hrozba.gd" id="5_51h2p"]
 [ext_resource type="Script" path="res://display/Inventar.gd" id="6_4aslp"]
 [ext_resource type="Script" path="res://display/Obchod.gd" id="6_q6e7s"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ajq2l"]
-light_mode = 2
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_eailf"]
 tile_data = PackedInt32Array(0, 262145, 0, 65536, 262145, 0, 131072, 262145, 0, 196608, 131073, 0, 262144, 262145, 0, 327680, 262145, 0, 393216, 262145, 0, 1, 262145, 0, 65537, 1, 0, 131073, 65537, 0, 196609, 65537, 0, 262145, 65537, 0, 327681, 1, 131072, 393217, 262145, 0, 2, 262145, 0, 65538, 65537, 0, 131074, 65537, 0, 196610, 65537, 0, 262146, 65537, 0, 327682, 65537, 0, 393218, 262145, 0, 3, 131073, 0, 65539, 65537, 0, 131075, 65537, 0, 196611, 65537, 0, 262147, 65537, 0, 327683, 65537, 0, 393219, 131073, 0, 4, 262145, 0, 65540, 65537, 0, 131076, 65537, 0, 196612, 65537, 0, 262148, 65537, 0, 327684, 65537, 0, 393220, 262145, 0, 5, 262145, 0, 65541, 1, 65536, 131077, 65537, 0, 196613, 65537, 0, 262149, 65537, 0, 327685, 1, 196608, 393221, 262145, 0, 6, 262145, 0, 65542, 262145, 0, 131078, 262145, 0, 196614, 131073, 0, 262150, 262145, 0, 327686, 262145, 0, 393222, 262145, 0)
@@ -180,7 +178,7 @@ script = ExtResource("1_vvfrj")
 metadata/_edit_group_ = true
 
 [node name="Prostory" type="TileMapLayer" parent="Mapa"]
-material = SubResource("CanvasItemMaterial_ajq2l")
+material = ExtResource("2_nqx6g")
 tile_set = SubResource("TileSet_sns41")
 
 [node name="Objekty" type="Node2D" parent="." node_paths=PackedStringArray("Mapa")]

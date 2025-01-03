@@ -18,10 +18,6 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
-func _exit_tree() -> void:
-	Signaly.prohra.emit()
-
-
 func ovladani_pohybu() -> void:
 	var smer_otaceni := Input.get_axis("doleva", "doprava")
 	if smer_otaceni:
@@ -74,3 +70,8 @@ func vybrat_dalsi_predmet() -> void:
 		Predmet.drzi(inventar[poradi].nazev)
 	else:
 		Predmet.drzi()
+
+
+func umrti() -> void:
+	queue_free()
+	Signaly.prohra.emit()

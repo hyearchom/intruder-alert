@@ -8,9 +8,14 @@ var bod_trasy: Vector2i
 var postup_na_trase: int
 var trasa: Array
 
+@onready var Hrac:= get_tree().get_first_node_in_group("hrac")
+@onready var Hrozba: Control = get_node("/root/Hra/%Hrozba")
+
 @onready var navigacni_pole := get_world_2d().get_navigation_map()
 @onready var oznaceni :=  ziskat_oznaceni()
-@onready var Hrac:= get_tree().get_first_node_in_group("hrac")
+
+@onready var Animace: AnimationPlayer = $Animace
+@onready var Tvar: Sprite2D = $Tvar
 
 
 func ziskat_cestu(cil:Vector2i) -> PackedVector2Array:
@@ -65,9 +70,13 @@ func dalsi_bod_cesty() -> void:
 		if seznam_cilu:
 			vypocitat_trasu(seznam_cilu[0])
 		else:
-			set_physics_process(false)
+			aktivovat_pohyb(false)
 		#dalsi_bod_cesty()
 	bod_trasy = trasa[postup_na_trase]
+
+
+func aktivovat_pohyb(stav:=true) -> void:
+	set_physics_process(stav)
 
 
 func priblizeni_k_cily(cil:Vector2i) -> bool:
@@ -77,10 +86,10 @@ func priblizeni_k_cily(cil:Vector2i) -> bool:
 	
 
 func _ready() -> void:
-	set_physics_process(false)
+	aktivovat_pohyb(false)
 	await get_tree().process_frame
 	novy_cil(get_tree().get_first_node_in_group('sejf').global_position)
-	set_physics_process(true)
+	aktivovat_pohyb(true)
 
 
 func _physics_process(_delta: float) -> void:
@@ -90,11 +99,16 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
-func _exit_tree() -> void:
+func umrti() -> void:
+	aktivovat_pohyb(false)
+	material = null
+	Animace.play("umrti")
+	await Animace.animation_finished
 	if get_tree().get_nodes_in_group('souperi').size() == 1:
 		Signaly.vyhra.emit()
 		print('vyhra')
+	queue_free()
 
 
-func _zasah_hrace(body: Node2D) -> void:
-	body.queue_free()
+func _zasah_hrace(_body: Node2D) -> void:
+	Hrozba.zmenit_uroven(-5)

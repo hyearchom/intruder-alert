@@ -4,4 +4,4 @@ extends Area2D
 
 
 func _pruchod_soupere(_body: Node2D) -> void:
-	Hrozba.zvysit_uroven()
+	Hrozba.zmenit_uroven()

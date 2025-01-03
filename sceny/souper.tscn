@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcaxexurx5f2g"]
+[gd_scene load_steps=10 format=3 uid="uid://dcaxexurx5f2g"]
 
 [ext_resource type="Script" path="res://sceny/souper.gd" id="1_d6mxi"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xaqsr"]
-light_mode = 2
+[ext_resource type="Material" uid="uid://cyibocm625xcw" path="res://sceny/komponenty/pouze_na_svetle.tres" id="1_twpbo"]
 
 [sub_resource type="Gradient" id="Gradient_hil7n"]
 offsets = PackedFloat32Array(0.5, 0.6)
@@ -22,14 +20,53 @@ radius = 9.46
 [sub_resource type="CircleShape2D" id="CircleShape2D_2iod0"]
 radius = 70.0
 
+[sub_resource type="Animation" id="Animation_32iaa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p215x"]
+resource_name = "umrti"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pmbcf"]
+_data = {
+"RESET": SubResource("Animation_32iaa"),
+"umrti": SubResource("Animation_p215x")
+}
+
 [node name="Souper" type="CharacterBody2D" groups=["souperi"]]
+material = ExtResource("1_twpbo")
 collision_layer = 32
 motion_mode = 1
 script = ExtResource("1_d6mxi")
 metadata/_edit_group_ = true
 
 [node name="Tvar" type="Sprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_xaqsr")
+use_parent_material = true
 texture = SubResource("GradientTexture2D_dtqji")
 
 [node name="Obrysy" type="CollisionShape2D" parent="."]
@@ -41,5 +78,10 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Utok"]
 shape = SubResource("CircleShape2D_2iod0")
+
+[node name="Animace" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pmbcf")
+}
 
 [connection signal="body_entered" from="Utok" to="." method="_zasah_hrace"]

@@ -10,9 +10,8 @@ func _ready() -> void:
 func vypsat(zprava: StringName, konec:=true) -> void:
 	text = zprava
 	show()
-	if konec:
-		pass
-		#get_tree().paused = true
+	if konec and get_tree():
+		get_tree().paused = true
 	else:
 		Zmizeni.start()
 		await Zmizeni.timeout
