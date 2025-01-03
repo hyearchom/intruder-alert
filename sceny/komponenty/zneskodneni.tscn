@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnsdtdklrnw0w"]
+
+[ext_resource type="Script" path="res://sceny/komponenty/zneskodneni.gd" id="1_0dowx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioj7d"]
+size = Vector2(30, 30)
+
+[node name="Zneskodneni" type="Area2D"]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_0dowx")
+
+[node name="Dosah" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ioj7d")
+
+[connection signal="body_entered" from="." to="." method="_prichod_soupere"]

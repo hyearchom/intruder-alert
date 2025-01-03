@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcaxexurx5f2g"]
+[gd_scene load_steps=7 format=3 uid="uid://dcaxexurx5f2g"]
 
 [ext_resource type="Script" path="res://sceny/souper.gd" id="1_d6mxi"]
 
@@ -19,6 +19,9 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_gxw5k"]
 radius = 9.46
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2iod0"]
+radius = 70.0
+
 [node name="Souper" type="CharacterBody2D" groups=["souperi"]]
 collision_layer = 32
 motion_mode = 1
@@ -31,3 +34,12 @@ texture = SubResource("GradientTexture2D_dtqji")
 
 [node name="Obrysy" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gxw5k")
+
+[node name="Utok" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Utok"]
+shape = SubResource("CircleShape2D_2iod0")
+
+[connection signal="body_entered" from="Utok" to="." method="_zasah_hrace"]

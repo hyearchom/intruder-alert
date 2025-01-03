@@ -6,7 +6,9 @@ const CESTA = preload("res://sceny/cesta.tscn")
 var predmety: Dictionary = {
 	'sejf': preload("res://sceny/sejf.tscn"),
 	'dvere': preload("res://sceny/dvere.tscn"),
-	'vychod': preload("res://sceny/vychod.tscn")
+	'vychod': preload("res://sceny/vychod.tscn"),
+	'senzor': preload("res://sceny/senzor.tscn"),
+	'bomba': preload("res://sceny/bomba.tscn")
 }
 
 @export var Mapa: Node2D

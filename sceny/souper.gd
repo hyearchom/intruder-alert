@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const RYCHLOST_CHUZE: float = 50.0
+const RYCHLOST_CHUZE: float = 25.0
 #const VELIKOST_OTACENI: float = 4
 
 var seznam_cilu: Array
@@ -88,3 +88,13 @@ func _physics_process(_delta: float) -> void:
 		dalsi_bod_cesty()
 	velocity = global_position.direction_to(bod_trasy) *RYCHLOST_CHUZE
 	move_and_slide()
+
+
+func _exit_tree() -> void:
+	if get_tree().get_nodes_in_group('souperi').size() == 1:
+		Signaly.vyhra.emit()
+		print('vyhra')
+
+
+func _zasah_hrace(body: Node2D) -> void:
+	body.queue_free()

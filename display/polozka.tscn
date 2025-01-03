@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1fd6mt42lo4m"]
+
+[ext_resource type="Script" path="res://display/polozka.gd" id="1_hpryf"]
+
+[node name="1" type="Button"]
+text = "Polozka"
+script = ExtResource("1_hpryf")

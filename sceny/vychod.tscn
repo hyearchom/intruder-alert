@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpkmphs7lmola"]
+[gd_scene load_steps=4 format=3 uid="uid://dpkmphs7lmola"]
 
 [ext_resource type="Script" path="res://sceny/vychod.gd" id="1_d6was"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lmnnj"]
 size = Vector2(32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nfg8h"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
 
 [node name="Vychod" type="Area2D" groups=["vychody"]]
 collision_layer = 0
@@ -14,8 +18,17 @@ script = ExtResource("1_d6was")
 shape = SubResource("RectangleShape2D_lmnnj")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-visible = false
-color = Color(0.67, 0.4355, 0, 1)
+color = Color(1, 1, 0, 1)
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[node name="Popisek" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -15.0
+offset_right = 20.0
+offset_bottom = 13.0
+text = "E"
+label_settings = SubResource("LabelSettings_nfg8h")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_pruchod_soupere"]

@@ -1,10 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://7u568nebn6mm"]
+[gd_scene load_steps=32 format=3 uid="uid://7u568nebn6mm"]
 
 [ext_resource type="Script" path="res://Mapa.gd" id="1_vvfrj"]
 [ext_resource type="Texture2D" uid="uid://h7pp2mrxpd0l" path="res://media/vzornik.svg" id="2_30wqy"]
 [ext_resource type="Script" path="res://Postavy.gd" id="3_3iflw"]
 [ext_resource type="Script" path="res://Hrac.gd" id="3_l0pdp"]
+[ext_resource type="Script" path="res://display/Oznameni.gd" id="5_4r7d4"]
 [ext_resource type="Script" path="res://display/Hrozba.gd" id="5_51h2p"]
+[ext_resource type="Script" path="res://display/Inventar.gd" id="6_4aslp"]
+[ext_resource type="Script" path="res://display/Obchod.gd" id="6_q6e7s"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ajq2l"]
 light_mode = 2
@@ -148,6 +151,27 @@ height = 200
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="LabelSettings" id="LabelSettings_v6d3o"]
+font_size = 150
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntmlc"]
+bg_color = Color(0.26, 0.26, 0.26, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y78pl"]
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_iidok"]
+Button/styles/hover = SubResource("StyleBoxFlat_ntmlc")
+Button/styles/normal = SubResource("StyleBoxFlat_y78pl")
+Button/styles/pressed = null
+
 [node name="Hra" type="Node"]
 
 [node name="Mapa" type="Node2D" parent="."]
@@ -206,11 +230,50 @@ theme_override_constants/margin_top = 7
 theme_override_constants/margin_right = 7
 theme_override_constants/margin_bottom = 7
 
-[node name="Hrozba" type="VBoxContainer" parent="Display/Okraje" groups=["hrozba"]]
+[node name="Oznameni" type="Label" parent="Display/Okraje"]
+visible = false
 layout_mode = 2
+text = "TEST"
+label_settings = SubResource("LabelSettings_v6d3o")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_4r7d4")
+
+[node name="Zmizeni" type="Timer" parent="Display/Okraje/Oznameni"]
+wait_time = 2.0
+one_shot = true
+
+[node name="VedleSebe" type="HBoxContainer" parent="Display/Okraje"]
+layout_mode = 2
+alignment = 2
+
+[node name="PodSebe" type="VBoxContainer" parent="Display/Okraje/VedleSebe"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Hrozba" type="Label" parent="Display/Okraje/VedleSebe/PodSebe"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = "Hrozba"
 script = ExtResource("5_51h2p")
 
-[node name="Pocet" type="Label" parent="Display/Okraje/Hrozba"]
+[node name="Obchod" type="VBoxContainer" parent="Display/Okraje/VedleSebe/PodSebe"]
 layout_mode = 2
-text = "Hrozba"
-horizontal_alignment = 2
+theme = SubResource("Theme_iidok")
+theme_override_constants/separation = 20
+script = ExtResource("6_q6e7s")
+
+[node name="Predmet" type="VBoxContainer" parent="Display/Okraje"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("6_4aslp")
+
+[node name="VedleSebe" type="HBoxContainer" parent="Display/Okraje/Predmet"]
+layout_mode = 2
+
+[node name="Ruce" type="Label" parent="Display/Okraje/Predmet/VedleSebe"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Inventar"

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://oxaeldedrliw"]
+
+[ext_resource type="Script" path="res://sceny/senzor.gd" id="1_ujngq"]
+[ext_resource type="PackedScene" uid="uid://dfaqe8no0b3id" path="res://sceny/komponenty/zvednuti.tscn" id="2_25uwh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5087u"]
+radius = 60.0
+
+[node name="Senzor" type="Area2D" groups=["sejf"]]
+position = Vector2(500, 500)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_ujngq")
+nazev = &"sensor"
+
+[node name="Tvar" type="Polygon2D" parent="."]
+color = Color(0.00639385, 0.216966, 1.20327e-07, 1)
+polygon = PackedVector2Array(-6, 5, 7, 5, 7, -8, 2.18146, -8, 0, -13, -2, -8, -6, -8)
+
+[node name="Dosah" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_5087u")
+
+[node name="Zvednuti" parent="." instance=ExtResource("2_25uwh")]
+visible = false
+
+[connection signal="body_entered" from="." to="." method="_prichod_soupere"]

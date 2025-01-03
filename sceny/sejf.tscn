@@ -1,31 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://dibltixll7eq1"]
+[gd_scene load_steps=6 format=3 uid="uid://dibltixll7eq1"]
 
-[ext_resource type="Script" path="res://sceny/predmet.gd" id="1_cjoo1"]
+[ext_resource type="Script" path="res://sceny/sejf.gd" id="1_cjoo1"]
+[ext_resource type="PackedScene" uid="uid://dfaqe8no0b3id" path="res://sceny/komponenty/zvednuti.tscn" id="2_sx33h"]
+[ext_resource type="PackedScene" uid="uid://bnsdtdklrnw0w" path="res://sceny/komponenty/zneskodneni.tscn" id="3_0bfh2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gyekt"]
+font_size = 20
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcusf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_puspb"]
-size = Vector2(60, 60)
-
-[node name="Sejf" type="RigidBody2D" groups=["sejf"]]
+[node name="Sejf" type="RigidBody2D"]
 position = Vector2(500, 500)
 gravity_scale = 0.0
 script = ExtResource("1_cjoo1")
-nazev = &"sejf"
+nazev = &"vault"
 
 [node name="Tvar" type="Polygon2D" parent="."]
-color = Color(1, 0, 0.183333, 1)
-polygon = PackedVector2Array(-15, -15, -15, 15, 15, 15, 15, -15)
+color = Color(1, 0.683333, 0, 1)
+polygon = PackedVector2Array(-15, -10, -15, 10, -10, 15, 10, 15, 15, 10, 15, -10, 10, -15, -10, -15)
+
+[node name="Popisek" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -15.0
+offset_right = 20.0
+offset_bottom = 13.0
+text = "$"
+label_settings = SubResource("LabelSettings_gyekt")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Obrys" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_fcusf")
 
-[node name="Citlivost" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 16
+[node name="Zvednuti" parent="." instance=ExtResource("2_sx33h")]
+visible = false
 
-[node name="Dosah" type="CollisionShape2D" parent="Citlivost"]
-shape = SubResource("RectangleShape2D_puspb")
-
-[connection signal="body_entered" from="Citlivost" to="." method="_prichod_hrace"]
-[connection signal="body_exited" from="Citlivost" to="." method="_odchod_hrace"]
+[node name="Zneskodneni" parent="." instance=ExtResource("3_0bfh2")]
+visible = false
