@@ -18,11 +18,11 @@ var predmety: Dictionary = {
 
 func _ready() -> void:
 	Hrac.predmet_polozen.connect(nasadit_predmet)
-	nasadit_predmety('dvere', Mapa.ziskat_seznam_globalne(Mapa.ziskat_dvere()))
-	nasadit_predmety('vychod', Mapa.ziskat_seznam_globalne(Mapa.ziskat_vychody()))
-	nasadit_predmet('sejf', Mapa.ziskat_globalne(Mapa.ziskat_stred()))
+	nasadit_predmety('dvere', Mapa.ziskat_pole(Mapa.pole.dvere, true))
+	nasadit_predmety('vychod', Mapa.ziskat_pole(Mapa.pole.vychody, true))
+	nasadit_predmet('sejf', Mapa.ziskat_stred(true))
 	await Signaly.noc_zacala
-	nasadit_soupere(3, Mapa.ziskat_seznam_globalne(Mapa.ziskat_vychody()))
+	nasadit_soupere(3, Mapa.ziskat_pole(Mapa.pole.vychody, true))
 
 
 func nasadit_soupere(pocet:int, souradnice:Array) -> void:
