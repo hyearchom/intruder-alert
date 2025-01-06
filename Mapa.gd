@@ -16,7 +16,7 @@ func _vytvorit_mapu(rozmer_mapy:=Vector2i(5,5)) -> void:
 	for x in range(rozmer_mapy.x):
 		for y in range(rozmer_mapy.y):
 			pridat_mistnost(Vector2i(x,y))
-	nastavit_nahodne_vychody(3, ziskat_dvere_ven())
+	nastavit_nahodne_vychody(1, ziskat_dvere_ven())
 	zablokovat_nahodne_dvere(12)
 
 

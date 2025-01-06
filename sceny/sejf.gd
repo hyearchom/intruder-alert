@@ -6,4 +6,9 @@ extends Node2D
 
 func _ready() -> void:
 	add_to_group(id)
-	#add_to_group('predmety')
+
+
+func _priblizeni_soupere(body: Node2D) -> void:
+	body.poklad = true
+	Signaly.truhla_otevrena.emit()
+	queue_free()

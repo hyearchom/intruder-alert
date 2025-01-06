@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://bc7mo4bhs2l4w"]
+[gd_scene load_steps=2 format=3 uid="uid://bc7mo4bhs2l4w"]
+
+[ext_resource type="Material" uid="uid://cyibocm625xcw" path="res://sceny/komponenty/pouze_na_svetle.tres" id="1_ym04p"]
 
 [node name="Cesta" type="Line2D" groups=["cesty"]]
-visible = false
+z_as_relative = false
+material = ExtResource("1_ym04p")
 width = 4.0
 default_color = Color(1, 0.435294, 0.211765, 1)

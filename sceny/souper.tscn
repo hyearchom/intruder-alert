@@ -84,4 +84,8 @@ libraries = {
 "": SubResource("AnimationLibrary_pmbcf")
 }
 
+[node name="Zpozdeni" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
 [connection signal="body_entered" from="Utok" to="." method="_zasah_hrace"]

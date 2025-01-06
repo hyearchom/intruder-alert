@@ -1,11 +1,10 @@
 extends Area2D
 
-var prvni_vyuziti := true
+@onready var Hra: Node = $"/root/Hra"
 
 func _pruchod_soupere(body: Node2D) -> void:
-	if prvni_vyuziti:
-		body.novy_cil(global_position, false)
-		prvni_vyuziti = false
+	if body.poklad:
+		Signaly.emit_signal("prohra")
+		queue_free()
 	else:
-		Signaly.prohra.emit()
-		#prinwt(false)
+		body.novy_cil(global_position, false)

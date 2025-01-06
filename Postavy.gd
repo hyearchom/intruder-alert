@@ -28,7 +28,8 @@ func _ready() -> void:
 func nasadit_soupere(pocet:int, souradnice:Array) -> void:
 	while souradnice.size() > pocet:
 		souradnice.pop_at(randi_range(0, souradnice.size() -1))
-	for pozice:Vector2i in souradnice:
+	for _i in range(pocet):
+		var pozice: Vector2i = souradnice.pick_random()
 		pridat_prvek(SOUPER, pozice)
 		pridat_prvek(CESTA)
 

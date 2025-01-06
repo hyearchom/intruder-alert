@@ -2,18 +2,21 @@
 
 [ext_resource type="Script" path="res://sceny/sejf.gd" id="1_cjoo1"]
 [ext_resource type="PackedScene" uid="uid://dfaqe8no0b3id" path="res://sceny/komponenty/zvednuti.tscn" id="2_sx33h"]
-[ext_resource type="PackedScene" uid="uid://bnsdtdklrnw0w" path="res://sceny/komponenty/zneskodneni.tscn" id="3_0bfh2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gyekt"]
 font_size = 20
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcusf"]
 
-[node name="Sejf" type="RigidBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_k2p85"]
+radius = 20.0
+
+[node name="Sejf" type="Area2D"]
 position = Vector2(500, 500)
-gravity_scale = 0.0
+collision_layer = 0
+collision_mask = 32
 script = ExtResource("1_cjoo1")
-nazev = &"safe"
+nazev = &"chest"
 
 [node name="Tvar" type="Polygon2D" parent="."]
 color = Color(1, 0.683333, 0, 1)
@@ -36,5 +39,7 @@ shape = SubResource("RectangleShape2D_fcusf")
 [node name="Zvednuti" parent="." instance=ExtResource("2_sx33h")]
 visible = false
 
-[node name="Zneskodneni" parent="." instance=ExtResource("3_0bfh2")]
-visible = false
+[node name="Dosah" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k2p85")
+
+[connection signal="body_entered" from="." to="." method="_priblizeni_soupere"]

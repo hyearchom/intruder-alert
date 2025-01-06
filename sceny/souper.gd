@@ -8,14 +8,17 @@ var bod_trasy: Vector2i
 var postup_na_trase: int
 var trasa: Array
 
+var poklad := false
+
+@onready var navigacni_pole := get_world_2d().get_navigation_map()
+@onready var oznaceni := ziskat_oznaceni()
+
 @onready var Hrac:= get_tree().get_first_node_in_group("hrac")
 @onready var Hrozba: Control = get_node("/root/Hra/%Hrozba")
 
-@onready var navigacni_pole := get_world_2d().get_navigation_map()
-@onready var oznaceni :=  ziskat_oznaceni()
-
 @onready var Animace: AnimationPlayer = $Animace
 @onready var Tvar: Sprite2D = $Tvar
+@onready var Zpozdeni: Timer = $Zpozdeni
 
 
 func ziskat_cestu(cil:Vector2i) -> PackedVector2Array:
@@ -29,13 +32,15 @@ func ziskat_cestu(cil:Vector2i) -> PackedVector2Array:
 
 
 func ziskat_oznaceni() -> int:
-	var poradi := int(0)
-	for souper in get_tree().get_nodes_in_group('souperi'):
-		if souper == self:
-			return poradi
-		poradi += 1
-	push_warning('Nemůžu najít soupeře ve stejnojmenné skupině')
-	return -1
+	var pocet_souperu: int = get_tree().get_nodes_in_group('souperi').size()
+	return pocet_souperu -1
+	#var poradi := int(0)
+	#for souper in get_tree().get_nodes_in_group('souperi'):
+		#if souper == self:
+			#return poradi
+		#poradi += 1
+	#push_warning('Nemůžu najít soupeře ve stejnojmenné skupině')
+	#return -1
 
 
 func novy_cil(cil:Vector2i, zmenit_pohyb:=true) -> void:
@@ -76,6 +81,10 @@ func dalsi_bod_cesty() -> void:
 
 
 func aktivovat_pohyb(stav:=true) -> void:
+	var interval: float = 1
+	if stav:
+		Zpozdeni.start(1 +oznaceni *interval)
+		await Zpozdeni.timeout
 	set_physics_process(stav)
 
 
