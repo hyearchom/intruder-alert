@@ -2,24 +2,30 @@ extends Node2D
 
 const SOUPER = preload("res://sceny/souper.tscn")
 const CESTA = preload("res://sceny/cesta.tscn")
+const VYCHOD = preload("res://sceny/vychod.tscn")
+const DVERE = preload("res://sceny/dvere.tscn")
 
-var predmety: Dictionary = {
-	'sejf': preload("res://sceny/sejf.tscn"),
-	'dvere': preload("res://sceny/dvere.tscn"),
-	'vychod': preload("res://sceny/vychod.tscn"),
-	'senzor': preload("res://sceny/senzor.tscn"),
-	'bomba': preload("res://sceny/bomba.tscn")
+var sceny_predmetu: Dictionary = {
+	'sejf': preload("res://sceny/predmety/sejf.tscn"),
+	'senzor': preload("res://sceny/predmety/senzor.tscn"),
+	'bomba': preload("res://sceny/predmety/bomba.tscn"),
+	'imp': preload("res://sceny/predmety/imp.tscn"),
 }
 
+@export var Inventar: Resource
 @export var Mapa: Node2D
 
-@onready var Hrac:= get_tree().get_first_node_in_group("hrac")
+#@onready var Hrac:= get_tree().get_first_node_in_group("hrac")
 
 
 func _ready() -> void:
-	Hrac.predmet_polozen.connect(nasadit_predmet)
-	nasadit_predmety('dvere', Mapa.ziskat_pole(Mapa.pole.dvere, true))
-	nasadit_predmety('vychod', Mapa.ziskat_pole(Mapa.pole.vychody, true))
+	Inventar.predmet_polozen.connect(nasadit_predmet)
+	for pozice: Vector2i in Mapa.ziskat_pole(Mapa.pole.dvere, true):
+		pridat_prvek(DVERE, pozice)
+	for pozice: Vector2i in Mapa.ziskat_pole(Mapa.pole.vychody, true):
+		pridat_prvek(VYCHOD, pozice)
+	#nasadit_predmety('dvere', Mapa.ziskat_pole(Mapa.pole.dvere, true))
+	#nasadit_predmety('vychod', Mapa.ziskat_pole(Mapa.pole.vychody, true))
 	nasadit_predmet('sejf', Mapa.ziskat_stred(true))
 	await Signaly.noc_zacala
 	nasadit_soupere(3, Mapa.ziskat_pole(Mapa.pole.vychody, true))
@@ -41,13 +47,13 @@ func pridat_prvek(scena:PackedScene, pozice:=Vector2i.ZERO) -> void:
 
 
 func nasadit_predmet(nazev:StringName, pozice:Vector2i) -> void:
-	var predmet: PackedScene = predmety.get(nazev)
+	var predmet: PackedScene = sceny_predmetu.get(nazev)
 	if predmet:
 		pridat_prvek(predmet, pozice)
 	else:
 		push_warning('Předmět není rozpoznám')
 
 
-func nasadit_predmety(nazev:StringName, souradnice:Array) -> void:
-	for pozice:Vector2i in souradnice:
-		nasadit_predmet(nazev, pozice)
+#func nasadit_predmety(nazev:StringName, souradnice:Array) -> void:
+	#for pozice:Vector2i in souradnice:
+		#nasadit_predmet(nazev, pozice)

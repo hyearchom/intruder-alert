@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://7u568nebn6mm"]
+[gd_scene load_steps=34 format=3 uid="uid://7u568nebn6mm"]
 
 [ext_resource type="Script" path="res://Mapa.gd" id="1_vvfrj"]
 [ext_resource type="Texture2D" uid="uid://h7pp2mrxpd0l" path="res://media/vzornik.svg" id="2_30wqy"]
@@ -6,9 +6,11 @@
 [ext_resource type="Script" path="res://Postavy.gd" id="3_3iflw"]
 [ext_resource type="Script" path="res://Hrac.gd" id="3_l0pdp"]
 [ext_resource type="Script" path="res://display/Oznameni.gd" id="5_4r7d4"]
-[ext_resource type="Script" path="res://display/Hrozba.gd" id="5_51h2p"]
-[ext_resource type="Script" path="res://display/Inventar.gd" id="6_4aslp"]
+[ext_resource type="Script" path="res://display/Mena.gd" id="5_51h2p"]
+[ext_resource type="Script" path="res://display/Ruce.gd" id="6_4aslp"]
 [ext_resource type="Script" path="res://display/Obchod.gd" id="6_q6e7s"]
+[ext_resource type="Resource" uid="uid://cls7ybtonckcd" path="res://sceny/systemy/Inventar.tres" id="6_qrrlm"]
+[ext_resource type="Resource" uid="uid://bygy5k6iunr7" path="res://sceny/systemy/Strach.tres" id="8_0tebu"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_eailf"]
 tile_data = PackedInt32Array(0, 262145, 0, 65536, 262145, 0, 131072, 262145, 0, 196608, 131073, 0, 262144, 262145, 0, 327680, 262145, 0, 393216, 262145, 0, 1, 262145, 0, 65537, 1, 0, 131073, 65537, 0, 196609, 65537, 0, 262145, 65537, 0, 327681, 1, 131072, 393217, 262145, 0, 2, 262145, 0, 65538, 65537, 0, 131074, 65537, 0, 196610, 65537, 0, 262146, 65537, 0, 327682, 65537, 0, 393218, 262145, 0, 3, 131073, 0, 65539, 65537, 0, 131075, 65537, 0, 196611, 65537, 0, 262147, 65537, 0, 327683, 65537, 0, 393219, 131073, 0, 4, 262145, 0, 65540, 65537, 0, 131076, 65537, 0, 196612, 65537, 0, 262148, 65537, 0, 327684, 65537, 0, 393220, 262145, 0, 5, 262145, 0, 65541, 1, 65536, 131077, 65537, 0, 196613, 65537, 0, 262149, 65537, 0, 327685, 1, 196608, 393221, 262145, 0, 6, 262145, 0, 65542, 262145, 0, 131078, 262145, 0, 196614, 131073, 0, 262150, 262145, 0, 327686, 262145, 0, 393222, 262145, 0)
@@ -138,12 +140,12 @@ light_mode = 2
 [sub_resource type="CircleShape2D" id="CircleShape2D_gxw5k"]
 radius = 9.46
 
-[sub_resource type="Gradient" id="Gradient_k5wta"]
+[sub_resource type="Gradient" id="Gradient_k3a0l"]
 offsets = PackedFloat32Array(0.702703, 0.722973)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_j1tpt"]
-gradient = SubResource("Gradient_k5wta")
+gradient = SubResource("Gradient_k3a0l")
 width = 200
 height = 200
 fill = 1
@@ -186,6 +188,7 @@ z_index = 1
 z_as_relative = false
 material = SubResource("CanvasItemMaterial_bmoeh")
 script = ExtResource("3_3iflw")
+Inventar = ExtResource("6_qrrlm")
 Mapa = NodePath("../Mapa")
 
 [node name="Hrac" type="CharacterBody2D" parent="Objekty" groups=["hrac"]]
@@ -195,6 +198,7 @@ position = Vector2(120, 120)
 collision_layer = 16
 motion_mode = 1
 script = ExtResource("3_l0pdp")
+Inventar = ExtResource("6_qrrlm")
 metadata/_edit_group_ = true
 
 [node name="Tvar" type="Polygon2D" parent="Objekty/Hrac"]
@@ -249,29 +253,33 @@ alignment = 2
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="Hrozba" type="Label" parent="Display/Okraje/VedleSebe/PodSebe"]
+[node name="Mena" type="Label" parent="Display/Okraje/VedleSebe/PodSebe"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
 text = "Hrozba"
 script = ExtResource("5_51h2p")
+Strach = ExtResource("8_0tebu")
 
 [node name="Obchod" type="VBoxContainer" parent="Display/Okraje/VedleSebe/PodSebe"]
 layout_mode = 2
 theme = SubResource("Theme_iidok")
 theme_override_constants/separation = 20
 script = ExtResource("6_q6e7s")
+Strach = ExtResource("8_0tebu")
+Inventar = ExtResource("6_qrrlm")
 
-[node name="Predmet" type="VBoxContainer" parent="Display/Okraje"]
+[node name="Ruce" type="VBoxContainer" parent="Display/Okraje"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 script = ExtResource("6_4aslp")
+Inventar = ExtResource("6_qrrlm")
 
-[node name="VedleSebe" type="HBoxContainer" parent="Display/Okraje/Predmet"]
+[node name="VedleSebe" type="HBoxContainer" parent="Display/Okraje/Ruce"]
 layout_mode = 2
 
-[node name="Ruce" type="Label" parent="Display/Okraje/Predmet/VedleSebe"]
+[node name="Popis" type="Label" parent="Display/Okraje/Ruce/VedleSebe"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Inventar"

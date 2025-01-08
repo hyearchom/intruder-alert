@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dibltixll7eq1"]
 
-[ext_resource type="Script" path="res://sceny/sejf.gd" id="1_cjoo1"]
+[ext_resource type="Script" path="res://sceny/predmety/sejf.gd" id="1_cjoo1"]
 [ext_resource type="PackedScene" uid="uid://dfaqe8no0b3id" path="res://sceny/komponenty/zvednuti.tscn" id="2_sx33h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gyekt"]
@@ -16,7 +16,6 @@ position = Vector2(500, 500)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("1_cjoo1")
-nazev = &"chest"
 
 [node name="Tvar" type="Polygon2D" parent="."]
 color = Color(1, 0.683333, 0, 1)

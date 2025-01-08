@@ -10,11 +10,12 @@ var trasa: Array
 
 var poklad := false
 
+@export var Strach: Resource
+
 @onready var navigacni_pole := get_world_2d().get_navigation_map()
 @onready var oznaceni := ziskat_oznaceni()
 
 @onready var Hrac:= get_tree().get_first_node_in_group("hrac")
-@onready var Hrozba: Control = get_node("/root/Hra/%Hrozba")
 
 @onready var Animace: AnimationPlayer = $Animace
 @onready var Tvar: Sprite2D = $Tvar
@@ -120,4 +121,4 @@ func umrti() -> void:
 
 
 func _zasah_hrace(_body: Node2D) -> void:
-	Hrozba.zmenit_uroven(-5)
+	Strach.upravit(-5)

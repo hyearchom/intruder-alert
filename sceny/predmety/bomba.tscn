@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c3c6jarqjfnm1"]
 
-[ext_resource type="Script" path="res://sceny/bomba.gd" id="1_628kp"]
+[ext_resource type="Script" path="res://sceny/predmety/bomba.gd" id="1_628kp"]
 [ext_resource type="PackedScene" uid="uid://dfaqe8no0b3id" path="res://sceny/komponenty/zvednuti.tscn" id="2_rrjdj"]
 [ext_resource type="PackedScene" uid="uid://bnsdtdklrnw0w" path="res://sceny/komponenty/zneskodneni.tscn" id="3_xjqjh"]
 
@@ -11,7 +11,6 @@ radius = 100.0
 collision_layer = 0
 collision_mask = 48
 script = ExtResource("1_628kp")
-nazev = &"bomb"
 
 [node name="Tvar" type="Polygon2D" parent="."]
 color = Color(1, 0, 0.184314, 1)

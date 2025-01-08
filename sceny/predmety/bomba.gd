@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var nazev: StringName
+#@export var nazev: StringName
 
 @onready var id: StringName = name.to_lower()
 @onready var Hrac := get_tree().get_first_node_in_group('hrac')

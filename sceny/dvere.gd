@@ -1,7 +1,6 @@
 extends Area2D
 
-@onready var Hrozba: Control = get_node("/root/Hra/%Hrozba")
-
+@export var Strach: Resource
 
 func _pruchod_soupere(_body: Node2D) -> void:
-	Hrozba.zmenit_uroven()
+	Strach.upravit(1)

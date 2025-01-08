@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bygy5k6iunr7"]
+
+[ext_resource type="Script" path="res://sceny/systemy/Strach.gd" id="1_iui3b"]
+
+[resource]
+script = ExtResource("1_iui3b")

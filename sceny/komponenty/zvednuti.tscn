@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfaqe8no0b3id"]
+[gd_scene load_steps=4 format=3 uid="uid://dfaqe8no0b3id"]
 
 [ext_resource type="Script" path="res://sceny/komponenty/zvednuti.gd" id="1_ubs4x"]
+[ext_resource type="Resource" uid="uid://cls7ybtonckcd" path="res://sceny/systemy/Inventar.tres" id="2_b0eoi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puspb"]
 size = Vector2(60, 60)
@@ -9,6 +10,7 @@ size = Vector2(60, 60)
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("1_ubs4x")
+Inventar = ExtResource("2_b0eoi")
 
 [node name="Dosah" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_puspb")

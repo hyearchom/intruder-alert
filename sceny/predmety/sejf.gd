@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var nazev: StringName
+#@export var nazev: StringName
 @onready var id: StringName = name.to_lower()
 
 

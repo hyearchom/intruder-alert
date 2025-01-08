@@ -34,7 +34,10 @@ window/size/viewport_height=800
 folder_colors={
 "res://display/": "teal",
 "res://media/": "purple",
-"res://sceny/komponenty/": "yellow"
+"res://nastroje/": "gray",
+"res://sceny/komponenty/": "yellow",
+"res://sceny/predmety/": "green",
+"res://sceny/systemy/": "blue"
 }
 
 [input]
