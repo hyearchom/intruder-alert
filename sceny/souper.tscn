@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dcaxexurx5f2g"]
+[gd_scene load_steps=13 format=3 uid="uid://dcaxexurx5f2g"]
 
 [ext_resource type="Script" path="res://sceny/souper.gd" id="1_d6mxi"]
 [ext_resource type="Material" uid="uid://cyibocm625xcw" path="res://sceny/komponenty/pouze_na_svetle.tres" id="1_twpbo"]
 [ext_resource type="Resource" uid="uid://bygy5k6iunr7" path="res://sceny/systemy/Strach.tres" id="3_njy3l"]
+[ext_resource type="Resource" uid="uid://cyf6kg3h555t" path="res://sceny/komponenty/denik.tres" id="3_xvxqx"]
+[ext_resource type="PackedScene" uid="uid://c0fbm1yxxrxhj" path="res://sceny/komponenty/navigace.tscn" id="4_yjh1o"]
 
 [sub_resource type="Gradient" id="Gradient_hil7n"]
 offsets = PackedFloat32Array(0.5, 0.6)
@@ -64,8 +66,11 @@ material = ExtResource("1_twpbo")
 collision_layer = 32
 motion_mode = 1
 script = ExtResource("1_d6mxi")
+Denik = ExtResource("3_xvxqx")
 Strach = ExtResource("3_njy3l")
 metadata/_edit_group_ = true
+
+[node name="Navigace" parent="." instance=ExtResource("4_yjh1o")]
 
 [node name="Tvar" type="Sprite2D" parent="."]
 use_parent_material = true

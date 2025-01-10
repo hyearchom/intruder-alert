@@ -7,4 +7,4 @@ func _pruchod_soupere(body: Node2D) -> void:
 		Signaly.emit_signal("prohra")
 		queue_free()
 	else:
-		body.novy_cil(global_position, false)
+		body.Navigace.novy_cil(global_position, false)
