@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://q3i76p86m1bm"]
 
 [ext_resource type="Script" path="res://nastroje/pripsani_polozky.gd" id="1_tph5d"]
-[ext_resource type="Script" path="res://Postavy.gd" id="2_cl8j7"]
+[ext_resource type="Script" path="res://sceny/systemy/Objekty.gd" id="2_cl8j7"]
 
 [node name="PripsaniPolozky" type="Node"]
 script = ExtResource("1_tph5d")
-nazev = "imp"
+nazev = "lahev"
 skript = ExtResource("2_cl8j7")
 nazev_seznamu = &"ready"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Postava" load_steps=2 format=3 uid="uid://cyf6kg3h555t"]
+
+[ext_resource type="Script" path="res://sceny/komponenty/postava.gd" id="1_dtl6v"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_dtl6v")
+vlastnosti = Array[int]([])
+boj = 0

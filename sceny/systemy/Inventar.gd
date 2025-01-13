@@ -12,6 +12,7 @@ var databaze: Dictionary = {
 	'senzor': {'nazev': 'sensor', 'cena': 1},
 	'imp': {'nazev': 'imp', 'cena': 2},
 	'bomba': {'nazev': 'bomb', 'cena': 3},
+	'lahev': {'nazev': 'bottle', 'cena': 5},
 }
 
 

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c22wfgyavc0jl"]
+
+[ext_resource type="Script" path="res://sceny/predmety/lahev.gd" id="1_e605g"]
+[ext_resource type="PackedScene" uid="uid://dfaqe8no0b3id" path="res://sceny/komponenty/zvednuti.tscn" id="2_cbh0w"]
+[ext_resource type="PackedScene" uid="uid://bnsdtdklrnw0w" path="res://sceny/komponenty/zneskodneni.tscn" id="3_dla5h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5087u"]
+radius = 200.0
+
+[node name="Lahev" type="Area2D" groups=["sejf"]]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_e605g")
+metadata/_edit_group_ = true
+
+[node name="Tvar" type="Polygon2D" parent="."]
+scale = Vector2(0.7, 0.7)
+color = Color(0.557378, 0.279569, 1, 1)
+polygon = PackedVector2Array(-6, 18, 7, 18, 7, -8, 2.18146, -8, 2, -14, 5, -17, -5, -17, -2, -14.0642, -2, -8, -6, -8)
+
+[node name="Dosah" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5087u")
+
+[node name="Zvednuti" parent="." instance=ExtResource("2_cbh0w")]
+visible = false
+
+[node name="Zneskodneni" parent="." instance=ExtResource("3_dla5h")]
+
+[connection signal="body_entered" from="." to="." method="_prichod_soupere"]

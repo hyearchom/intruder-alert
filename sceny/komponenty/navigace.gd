@@ -1,6 +1,6 @@
 extends Node2D
 
-signal cil_dosazen
+signal konec_trasy
 
 var seznam_cilu: Array
 var bod_trasy: Vector2i
@@ -15,10 +15,15 @@ func aktivovat(stav:=true) -> void:
 
 
 func novy_cil(cil:Vector2i, zmenit_pohyb:=true) -> void:
-	seznam_cilu.append(cil)
 	if zmenit_pohyb:
+		seznam_cilu.push_front(cil)
 		_vypocitat_trasu(cil)
 		_dalsi_bod_cesty()
+	else:
+		if seznam_cilu.size() > 0:
+			seznam_cilu.insert(1, cil)
+		else:
+			seznam_cilu.append(cil)
 
 
 func _vypocitat_trasu(cil:Vector2i) -> void:
@@ -44,7 +49,7 @@ func _dalsi_bod_cesty() -> void:
 		if seznam_cilu:
 			_vypocitat_trasu(seznam_cilu[0])
 		else:
-			cil_dosazen.emit()
+			konec_trasy.emit()
 	bod_trasy = trasa[postup_na_trase]
 
 
