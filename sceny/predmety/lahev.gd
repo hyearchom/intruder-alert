@@ -18,7 +18,7 @@ func _blizka_detekce() -> void:
 
 
 func _prilakat_soupere(telo: Node2D) -> void:
-	if telo.Denik.overit_znak(Postava.Znaky.ALKOHOL):
+	if telo.Postava.overit_znak(Denik.Znaky.ALKOHOL):
 		telo.Navigace.novy_cil(global_position)
 
 

@@ -77,15 +77,6 @@ func zablokovat_nahodne_dvere(pocet:int) -> void:
 		Prostory.set_cell(pozice_nahodnych_dveri, 1, Vector2i(4,0))
 
 
-#func ziskat_vychody(globalne:=false) -> Array:
-	#var policko_vychodu := Vector2i(3,0)
-	#var seznam: Array = Prostory.get_used_cells_by_id(1, policko_vychodu)
-	#if not globalne:
-		#return seznam
-	#else:
-		#return ziskat_seznam_globalne(seznam)
-
-
 func ziskat_globalne(pozice:Vector2i) -> Vector2i:
 	return Prostory.map_to_local(pozice)
 

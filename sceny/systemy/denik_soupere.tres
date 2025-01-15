@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Denik" load_steps=2 format=3 uid="uid://cyf6kg3h555t"]
+
+[ext_resource type="Script" path="res://sceny/systemy/denik_soupere.gd" id="1_dtl6v"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_dtl6v")
+vlastnosti = Array[int]([])
+boj = 2
+zivoty = 3

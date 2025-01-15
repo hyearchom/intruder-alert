@@ -3,7 +3,7 @@ extends Area2D
 @onready var Hra: Node = $"/root/Hra"
 
 func _pruchod_soupere(body: Node2D) -> void:
-	if body.Denik.poklad:
+	if body.Postava.poklad:
 		Signaly.emit_signal("prohra")
 		queue_free()
 	else:

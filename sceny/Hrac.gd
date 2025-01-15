@@ -4,9 +4,13 @@ extends CharacterBody2D
 const RYCHLOST_CHUZE: float = 100.0
 const VELIKOST_OTACENI: float = 4
 
+@export var Postava: Resource
 @export var Inventar: Resource
 
 @onready var Celo: Marker2D = $Celo
+
+func _ready() -> void:
+	Postava.porazka.connect(umrti)
 
 
 func _physics_process(_delta: float) -> void:

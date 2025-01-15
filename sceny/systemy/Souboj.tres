@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Souboj" load_steps=2 format=3 uid="uid://dtnsomcnyqp7r"]
+
+[ext_resource type="Script" path="res://sceny/systemy/Souboj.gd" id="1_vwqkw"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_vwqkw")
+zivoty = 0

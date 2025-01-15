@@ -1,9 +1,7 @@
-extends Resource
-class_name Postava
+extends Souboj
+class_name Denik
 
-
-signal zivoty_zmeneny
-signal porazka
+signal prezbrojeni
 
 enum Znaky {
 	ALKOHOL = -1,
@@ -20,10 +18,20 @@ var popis: Dictionary = {
 @export var vlastnosti: Array[Znaky]
 
 enum Styl_boje {UTEK, NA_BLIZKO, NA_DALKU}
-@export var boj: Styl_boje
+@export var boj: Styl_boje:
+	set(hodnota):
+		boj = hodnota
+		prezbrojeni.emit()
 
-var zivoty: int
 var poklad := false
+
+
+
+func zmena_zivotu(mira:int=-1) -> void:
+	zivoty += mira
+	zivoty_zmeneny.emit()
+	if zivoty <= 0:
+		porazka.emit()
 
 
 func nahodne_neresti(pocet:int) -> void:
@@ -38,10 +46,3 @@ func nahodne_schopnosti(pocet:int) -> void:
 
 func overit_znak(poradi:int) -> bool:
 	return poradi in vlastnosti
-
-
-func zmena_zivotu(mira:int=-1) -> void:
-	zivoty += mira
-	zivoty_zmeneny.emit()
-	if zivoty <= 0:
-		porazka.emit()

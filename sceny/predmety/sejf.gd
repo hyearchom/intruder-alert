@@ -9,6 +9,6 @@ func _ready() -> void:
 
 
 func _priblizeni_soupere(body: Node2D) -> void:
-	body.Denik.poklad = true
+	body.Postava.poklad = true
 	Signaly.truhla_otevrena.emit()
 	queue_free()

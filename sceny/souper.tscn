@@ -1,11 +1,115 @@
-[gd_scene load_steps=13 format=3 uid="uid://dcaxexurx5f2g"]
+[gd_scene load_steps=20 format=3 uid="uid://dcaxexurx5f2g"]
 
 [ext_resource type="Script" path="res://sceny/souper.gd" id="1_d6mxi"]
 [ext_resource type="Material" uid="uid://cyibocm625xcw" path="res://sceny/komponenty/pouze_na_svetle.tres" id="1_twpbo"]
-[ext_resource type="Resource" uid="uid://cyf6kg3h555t" path="res://sceny/komponenty/postava.tres" id="3_igfya"]
 [ext_resource type="Resource" uid="uid://bygy5k6iunr7" path="res://sceny/systemy/Strach.tres" id="3_njy3l"]
+[ext_resource type="Resource" uid="uid://cyf6kg3h555t" path="res://sceny/systemy/denik_soupere.tres" id="3_r7ecj"]
 [ext_resource type="PackedScene" uid="uid://c0fbm1yxxrxhj" path="res://sceny/komponenty/navigace.tscn" id="4_yjh1o"]
 [ext_resource type="PackedScene" uid="uid://b47p43ebjxed4" path="res://sceny/komponenty/zahlednuti.tscn" id="6_cfakm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjuc7"]
+size = Vector2(17.8333, 2)
+
+[sub_resource type="Animation" id="Animation_j3ab2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dosah/Ostri:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_yjoe2"]
+resource_name = "sek"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.785398, 0.785398]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dosah/Ostri:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h4nv6"]
+_data = {
+"RESET": SubResource("Animation_j3ab2"),
+"sek": SubResource("Animation_yjoe2")
+}
+
+[sub_resource type="Animation" id="Animation_yrp56"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_x0gnw"]
+resource_name = "vypusteni"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, 2), Vector2(0.7, 2), Vector2(1.5, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r25ib"]
+_data = {
+"RESET": SubResource("Animation_yrp56"),
+"vypusteni": SubResource("Animation_x0gnw")
+}
 
 [sub_resource type="Gradient" id="Gradient_hil7n"]
 offsets = PackedFloat32Array(0.5, 0.6)
@@ -64,19 +168,70 @@ material = ExtResource("1_twpbo")
 collision_layer = 32
 motion_mode = 1
 script = ExtResource("1_d6mxi")
-Denik = ExtResource("3_igfya")
+Postava = ExtResource("3_r7ecj")
 Strach = ExtResource("3_njy3l")
 metadata/_edit_group_ = true
 
 [node name="Navigace" parent="." instance=ExtResource("4_yjh1o")]
 
 [node name="Zahlednuti" parent="." instance=ExtResource("6_cfakm")]
+visible = false
+
+[node name="Zbran" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="Mec" type="Polygon2D" parent="Zbran"]
+visible = false
+use_parent_material = true
+position = Vector2(4, 0)
+scale = Vector2(1.5, 2)
+color = Color(1, 0, 0.266666, 1)
+polygon = PackedVector2Array(3, -1, 3, 1, 6, 1, 6, 4, 8, 4, 8, 1, 26, 0, 8, -1, 8, -4, 6, -4, 6, -1)
+
+[node name="Dosah" type="Area2D" parent="Zbran/Mec"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="Ostri" type="CollisionShape2D" parent="Zbran/Mec/Dosah"]
+position = Vector2(16.9167, 0)
+shape = SubResource("RectangleShape2D_fjuc7")
+disabled = true
+
+[node name="Seknuti" type="AnimationPlayer" parent="Zbran/Mec"]
+libraries = {
+"": SubResource("AnimationLibrary_h4nv6")
+}
+
+[node name="Luk" type="Polygon2D" parent="Zbran"]
+visible = false
+use_parent_material = true
+position = Vector2(4, 0)
+scale = Vector2(1.5, 2)
+color = Color(1, 0, 0.266666, 1)
+polygon = PackedVector2Array(0, -6, 0, -0.5, 0.666667, -0.5, 0.666667, -5.5, 5.33333, -5, 8.66667, -3.5, 10.6667, -1.5, 10.6667, 0, 9.33333, 2, 6, 3.5, 0.666667, 4.5, 0.666667, 0.5, 0, 0.5, 0, 5.5, 6, 4.5, 10.6667, 2.5, 12, 0, 12, -2, 10, -4, 5.33333, -6)
+
+[node name="Vystrel" type="AnimationPlayer" parent="Zbran/Luk"]
+libraries = {
+"": SubResource("AnimationLibrary_r25ib")
+}
+
+[node name="Napnuti" type="Timer" parent="Zbran/Luk"]
+wait_time = 3.0
+
+[node name="Zalozeni" type="Marker2D" parent="Zbran/Luk"]
+position = Vector2(5, 0)
 
 [node name="Tvar" type="Sprite2D" parent="."]
 use_parent_material = true
 texture = SubResource("GradientTexture2D_dtqji")
 
+[node name="Pohled" type="Polygon2D" parent="Tvar"]
+visible = false
+use_parent_material = true
+polygon = PackedVector2Array(8, -5, 8, 5, 16, 0)
+
 [node name="Obrysy" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_gxw5k")
 
 [node name="Animace" type="AnimationPlayer" parent="."]
@@ -88,3 +243,7 @@ libraries = {
 process_callback = 0
 wait_time = 1.5
 one_shot = true
+
+[connection signal="body_entered" from="Zbran/Mec/Dosah" to="." method="_hrac_seknut"]
+[connection signal="body_entered" from="Zbran/Mec/Dosah" to="." method="_hrac_zasazen"]
+[connection signal="timeout" from="Zbran/Luk/Napnuti" to="." method="_strelba"]

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://8xhy2k7jg65d"]
+
+[ext_resource type="Script" path="res://sceny/systemy/denik_hrace.gd" id="1_vxmol"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_vxmol")
+zivoty = 3

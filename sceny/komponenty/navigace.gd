@@ -14,28 +14,28 @@ func aktivovat(stav:=true) -> void:
 	set_physics_process(stav)
 
 
-func novy_cil(cil:Vector2i, zmenit_pohyb:=true) -> void:
+func novy_cil(pozice:Vector2i, zmenit_pohyb:=true) -> void:
 	if zmenit_pohyb:
-		seznam_cilu.push_front(cil)
-		_vypocitat_trasu(cil)
+		seznam_cilu.push_front(pozice)
+		_vypocitat_trasu(pozice)
 		_dalsi_bod_cesty()
 	else:
 		if seznam_cilu.size() > 0:
-			seznam_cilu.insert(1, cil)
+			seznam_cilu.insert(1, pozice)
 		else:
-			seznam_cilu.append(cil)
+			seznam_cilu.append(pozice)
 
 
-func _vypocitat_trasu(cil:Vector2i) -> void:
-	trasa = _ziskat_cestu(cil)
+func _vypocitat_trasu(pozice:Vector2i) -> void:
+	trasa = _ziskat_cestu(pozice)
 	vykreslit_cestu()
 
 
-func _ziskat_cestu(cil:Vector2i) -> PackedVector2Array:
+func _ziskat_cestu(pozice:Vector2i) -> PackedVector2Array:
 	var cesta := NavigationServer2D.map_get_path(
 		navigacni_pole, 
 		global_position, 
-		cil,
+		pozice,
 		false
 		)
 	return cesta
@@ -58,9 +58,9 @@ func _physics_process(_delta: float) -> void:
 		_dalsi_bod_cesty()
 
 
-func _priblizeni_k_cily(cil:Vector2i) -> bool:
+func _priblizeni_k_cily(pozice:Vector2i) -> bool:
 	var tolerance_priblizeni := 7
-	return global_position.distance_to(cil) < tolerance_priblizeni
+	return global_position.distance_to(pozice) < tolerance_priblizeni
 
 
 func vykreslit_cestu() -> void:

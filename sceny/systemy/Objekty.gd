@@ -4,6 +4,7 @@ const SOUPER = preload("res://sceny/souper.tscn")
 const CESTA = preload("res://sceny/cesta.tscn")
 const VYCHOD = preload("res://sceny/vychod.tscn")
 const DVERE = preload("res://sceny/dvere.tscn")
+const SIP = preload("res://sceny/sip.tscn")
 
 var sceny_predmetu: Dictionary = {
 	'sejf': preload("res://sceny/predmety/sejf.tscn"),
@@ -35,7 +36,14 @@ func nasadit_soupere(pocet:int, souradnice:Array) -> void:
 		souradnice.pop_at(randi_range(0, souradnice.size() -1))
 	for _i in range(pocet):
 		var pozice: Vector2i = souradnice.pick_random()
-		pridat_prvek(SOUPER, pozice)
+		var souper := SOUPER.instantiate()
+		add_child(souper)
+		souper.position = pozice
+		souper.strela_vypustena.connect(
+			func(vychozi_pozice:Vector2i, smer:Vector2) ->void:
+				await get_tree().process_frame 
+				nasadit_strelu(SIP, vychozi_pozice, smer)
+				)
 		pridat_prvek(CESTA)
 
 
@@ -52,6 +60,12 @@ func nasadit_predmet(nazev:StringName, pozice:Vector2i) -> void:
 	else:
 		push_warning('Předmět není rozpoznám')
 
+
+func nasadit_strelu(scena:PackedScene, pozice:Vector2i, smer:Vector2) -> void:
+	var prvek := scena.instantiate()
+	prvek.smer_pohybu = smer
+	add_child(prvek)
+	prvek.position = pozice
 
 #func nasadit_predmety(nazev:StringName, souradnice:Array) -> void:
 	#for pozice:Vector2i in souradnice:
